@@ -11,62 +11,55 @@ using Acr.UserDialogs;
 
 namespace FullSharedCode
 {
-	public static class PhotoService
-	{
-		private static byte _easterEgg;
+    public static class PhotoService
+    {
+        private static byte _easterEgg;
 
-		public static async Task<byte[]> LoadImageAsync (string imageUrl)
-		{
+        public static async Task<byte[]> LoadImageAsync(string imageUrl)
+        {
 
-			#region _easterEgg
+            #region _easterEgg
 
-			_easterEgg++;
+            _easterEgg++;
+            if (_easterEgg % 13 == 0)
+            {
+                await UserDialogs.Instance.AlertAsync("Oops, you found the Easter Egg.", typeof(PhotoService).Namespace);
+            }
 
-			if(_easterEgg % 13 == 0){
+            #endregion
 
-				await UserDialogs.Instance.AlertAsync ("Oops, you found the Easter Egg.", typeof(PhotoService).Namespace);
+            UserDialogs.Instance.ShowLoading();
 
-			}
+            try
+            {
+                var httpClient = new HttpClient();
+                var bytes = await httpClient.GetByteArrayAsync(imageUrl);
 
-			#endregion
+                UserDialogs.Instance.HideLoading();
 
-			UserDialogs.Instance.ShowLoading ();
+                return bytes;
+            }
+            catch (Exception)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.ShowError("Oops, can't retrive the image, please try again.");
+            }
 
-			try {
-				
-				var httpClient = new HttpClient();
+            return null;
+        }
 
-				var bytes =  await httpClient.GetByteArrayAsync (imageUrl);
+        #region shared optimization
 
-				UserDialogs.Instance.HideLoading ();
+        public static async Task LoadImageAsync(Action<byte[]> readyToLoadImage)
+        {
+            var bytes = await LoadImageAsync(Constants.RandomImageUrl);
+            if (bytes != null && bytes.Length > 0)
+            {
+                readyToLoadImage(bytes);
+            }
+        }
 
-				return bytes;
-
-			} catch (Exception) {
-
-				UserDialogs.Instance.HideLoading ();
-
-				UserDialogs.Instance.ShowError ("Oops, can't retrive the image, please try again.");
-
-			}
-
-			return null;
-		}
-
-		#region shared optimization
-
-		public static async Task LoadImageAsync (Action<byte[]> readyToLoadImage){
-		
-			var bytes = await LoadImageAsync(Constants.RandomImageUrl);
-
-			if(bytes != null && bytes.Length > 0){
-
-				readyToLoadImage (bytes);
-
-			}
-		}
-
-		#endregion
-	}
+        #endregion
+    }
 }
 

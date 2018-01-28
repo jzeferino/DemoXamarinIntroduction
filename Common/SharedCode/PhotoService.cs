@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 
-namespace FullSharedCode
+namespace SharedCode
 {
     public static class PhotoService
     {
@@ -42,7 +42,7 @@ namespace FullSharedCode
             catch (Exception)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.ShowError("Oops, can't retrive the image, please try again.");
+                UserDialogs.Instance.Alert("Oops, can't retrive the image, please try again.");
             }
 
             return null;

@@ -180,5 +180,6 @@ UpgradeLog*.htm
 FakesAssemblies/
 
 *.userprefs
+.vs/
 
 .DS_Store

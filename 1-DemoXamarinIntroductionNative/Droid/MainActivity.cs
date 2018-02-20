@@ -10,7 +10,7 @@ using Android.App;
 using Android.Graphics;
 using Android.OS;
 using Android.Widget;
-using FullSharedCode;
+using SharedCode;
 
 namespace DemoXamarinIntroductionNative.Droid
 {

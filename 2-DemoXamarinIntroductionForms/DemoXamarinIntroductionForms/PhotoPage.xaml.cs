@@ -6,7 +6,7 @@
 
 using System.IO;
 using System.Threading.Tasks;
-using FullSharedCode;
+using SharedCode;
 using Xamarin.Forms;
 
 namespace DemoXamarinIntroductionForms

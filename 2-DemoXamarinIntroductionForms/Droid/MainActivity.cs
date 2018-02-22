@@ -1,6 +1,5 @@
 ﻿// ============================================
-// AUTHOR : Jorge Zeferino
-// CREATE DATE : April 23, 2016
+// AUTHOR : jzeferino
 // PURPOSE : A simple Xamarin introduction demo
 // ============================================
 
@@ -13,20 +12,20 @@ using Xamarin.Forms.Platform.Android;
 
 namespace DemoXamarinIntroductionForms.Droid
 {
-	[Activity (Label = "DemoXamarinIntroductionForms.Droid", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-	public class MainActivity : FormsApplicationActivity
-	{
-		protected override void OnCreate (Bundle bundle)
-		{
-			base.OnCreate (bundle);
+    [Activity(Label = "DemoXamarinIntroductionForms.Droid", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    public class MainActivity : FormsApplicationActivity
+    {
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
 
-			Forms.Init (this, bundle);
+            Forms.Init(this, bundle);
 
-			UserDialogs.Init(this);
+            UserDialogs.Init(this);
 
-			LoadApplication (new App ());
+            LoadApplication(new App());
 
-		}
-	}
+        }
+    }
 }
 

@@ -1,6 +1,5 @@
 ﻿// =============================================
-// AUTHOR : Jorge Zeferino
-// CREATE DATE : April 23, 2016
+// AUTHOR : jzeferino
 // PURPOSE : A simple Xamarin introduction demo
 // =============================================
 
@@ -14,54 +13,56 @@ using SharedCode;
 
 namespace DemoXamarinIntroductionNative.Droid
 {
-	[Activity (Label = "DemoXamarinIntroductionNative",	MainLauncher = true, Icon = "@mipmap/icon")]
-	public class MainActivity : Activity
-	{
-	    private ImageView _imgRandomPhoto;
+    [Activity(Label = "DemoXamarinIntroductionNative", MainLauncher = true, Icon = "@mipmap/icon")]
+    public class MainActivity : Activity
+    {
+        private ImageView _imgRandomPhoto;
 
-	    private Button _btnLoadImage;
+        private Button _btnLoadImage;
 
-		protected override void OnCreate (Bundle savedInstanceState)
-		{
-			base.OnCreate (savedInstanceState);
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
 
-			SetContentView (Resource.Layout.Main);
+            SetContentView(Resource.Layout.Main);
 
-			ActionBar.Hide ();
+            ActionBar.Hide();
 
-			UserDialogs.Init(this);
+            UserDialogs.Init(this);
 
-			_imgRandomPhoto = FindViewById<ImageView> (Resource.Id.imgRandomPhoto);
+            _imgRandomPhoto = FindViewById<ImageView>(Resource.Id.imgRandomPhoto);
 
-			_btnLoadImage = FindViewById<Button> (Resource.Id.btnLoadImage);
+            _btnLoadImage = FindViewById<Button>(Resource.Id.btnLoadImage);
 
-			_btnLoadImage.Click += async delegate {
+            _btnLoadImage.Click += async delegate
+            {
 
-				await LoadImage ();
+                await LoadImage();
 
-				#region shared optimization
-				/*await PhotoService.LoadImageAsync(bytes => {
+                #region shared optimization
+                /*await PhotoService.LoadImageAsync(bytes => {
 
 				     _imgRandomPhoto.SetImageBitmap(BitmapFactory.DecodeByteArray(bytes, 0, bytes.Length));
 
 				});*/
-				#endregion
-			};
-		}
+                #endregion
+            };
+        }
 
-	    private async Task LoadImage ()
-		{
-			var bytes = await PhotoService.LoadImageAsync(Constants.RandomImageUrl);
+        private async Task LoadImage()
+        {
+            var bytes = await PhotoService.LoadImageAsync(Constants.RandomImageUrl);
 
-			if(bytes != null && bytes.Length > 0){
+            if (bytes != null && bytes.Length > 0)
+            {
 
-				_imgRandomPhoto.SetImageBitmap(BitmapFactory.DecodeByteArray(bytes, 0, bytes.Length));
+                _imgRandomPhoto.SetImageBitmap(BitmapFactory.DecodeByteArray(bytes, 0, bytes.Length));
 
-			}
+            }
 
-		}
+        }
 
-	}
+    }
 }
 
 

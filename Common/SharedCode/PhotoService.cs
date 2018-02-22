@@ -1,6 +1,5 @@
 ﻿// =============================================
-// AUTHOR : Jorge Zeferino
-// CREATE DATE : April 23, 2016
+// AUTHOR : jzeferino
 // PURPOSE : A simple Xamarin introduction demo
 // =============================================
 
@@ -17,7 +16,6 @@ namespace SharedCode
 
         public static async Task<byte[]> LoadImageAsync(string imageUrl)
         {
-
             #region _easterEgg
 
             _easterEgg++;

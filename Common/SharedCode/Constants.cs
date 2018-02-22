@@ -1,9 +1,7 @@
 ﻿// =============================================
-// AUTHOR : Jorge Zeferino
-// CREATE DATE : April 23, 2016
+// AUTHOR : jzeferino
 // PURPOSE : A simple Xamarin introduction demo
 // =============================================
-
 
 namespace SharedCode
 {

@@ -1,6 +1,5 @@
 ﻿// =============================================
-// AUTHOR : Jorge Zeferino
-// CREATE DATE : April 23, 2016
+// AUTHOR : jzeferino
 // PURPOSE : A simple Xamarin introduction demo
 // =============================================
 
@@ -11,17 +10,17 @@ using Xamarin.Forms.Platform.iOS;
 
 namespace DemoXamarinIntroductionForms.iOS
 {
-	[Register ("AppDelegate")]
-	public class AppDelegate : FormsApplicationDelegate
-	{
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
-		{
-			Forms.Init ();
+    [Register("AppDelegate")]
+    public class AppDelegate : FormsApplicationDelegate
+    {
+        public override bool FinishedLaunching(UIApplication app, NSDictionary options)
+        {
+            Forms.Init();
 
-			LoadApplication (new App ());
+            LoadApplication(new App());
 
-			return base.FinishedLaunching (app, options);
-		}
-	}
+            return base.FinishedLaunching(app, options);
+        }
+    }
 }
 

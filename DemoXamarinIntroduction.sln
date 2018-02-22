@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-DemoXamarinIntroductionForms", "2-DemoXamarinIntroductionForms", "{878244DB-E4DB-4765-A0B2-06902735BD97}"
 EndProject
@@ -13,11 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoXamarinIntroductionNati
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{C6460157-272A-4556-8A4B-099CDF306A44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedCode", "Common\SharedCode\SharedCode.csproj", "{9CC5DBD9-BF5D-45AC-BB87-54329B194442}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedCode", "Common\SharedCode\SharedCode.csproj", "{9CC5DBD9-BF5D-45AC-BB87-54329B194442}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoXamarinIntroductionForms.iOS", "2-DemoXamarinIntroductionForms\iOS\DemoXamarinIntroductionForms.iOS.csproj", "{C3E9BD1B-7BF0-4E92-B869-F7B511D4FDCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoXamarinIntroductionForms", "2-DemoXamarinIntroductionForms\DemoXamarinIntroductionForms\DemoXamarinIntroductionForms.csproj", "{D0600D28-F320-4699-A27C-6E5E8DC68141}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoXamarinIntroductionForms", "2-DemoXamarinIntroductionForms\DemoXamarinIntroductionForms\DemoXamarinIntroductionForms.csproj", "{D0600D28-F320-4699-A27C-6E5E8DC68141}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoXamarinIntroductionForms.Droid", "2-DemoXamarinIntroductionForms\Droid\DemoXamarinIntroductionForms.Droid.csproj", "{2E9A96F8-6972-4397-B4D6-DA1EB33F712E}"
 EndProject
@@ -185,6 +185,7 @@ Global
 		{2E9A96F8-6972-4397-B4D6-DA1EB33F712E}.Release|x86.Deploy.0 = Release|Any CPU
 		{700802FE-273B-4D29-9AEE-B476DEECCAC7}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{700802FE-273B-4D29-9AEE-B476DEECCAC7}.Debug|Any CPU.Build.0 = Debug|x86
+		{700802FE-273B-4D29-9AEE-B476DEECCAC7}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{700802FE-273B-4D29-9AEE-B476DEECCAC7}.Debug|ARM.ActiveCfg = Debug|ARM
 		{700802FE-273B-4D29-9AEE-B476DEECCAC7}.Debug|ARM.Build.0 = Debug|ARM
 		{700802FE-273B-4D29-9AEE-B476DEECCAC7}.Debug|iPhone.ActiveCfg = Debug|x86
@@ -220,5 +221,8 @@ Global
 		{D0600D28-F320-4699-A27C-6E5E8DC68141} = {878244DB-E4DB-4765-A0B2-06902735BD97}
 		{2E9A96F8-6972-4397-B4D6-DA1EB33F712E} = {878244DB-E4DB-4765-A0B2-06902735BD97}
 		{700802FE-273B-4D29-9AEE-B476DEECCAC7} = {878244DB-E4DB-4765-A0B2-06902735BD97}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {68EF3013-D3D6-46B6-9E7F-BE8828F45BBB}
 	EndGlobalSection
 EndGlobal

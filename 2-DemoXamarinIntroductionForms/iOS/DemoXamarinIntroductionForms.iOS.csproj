@@ -91,6 +91,19 @@
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json">
       <InProject>false</InProject>
     </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-40.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-60.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-58.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-87.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-80.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-120.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-180.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-20.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-29.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-76.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-152.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-167.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-1024.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />

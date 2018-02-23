@@ -10,6 +10,7 @@ using Android.Graphics;
 using Android.OS;
 using Android.Widget;
 using SharedCode;
+using SharedCode.ViewModel;
 
 namespace DemoXamarinIntroductionNative.Droid
 {
@@ -17,8 +18,8 @@ namespace DemoXamarinIntroductionNative.Droid
     public class MainActivity : Activity
     {
         private ImageView _imgRandomPhoto;
-
         private Button _btnLoadImage;
+        private PhotoViewModel _photoViewModel;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -34,34 +35,31 @@ namespace DemoXamarinIntroductionNative.Droid
 
             _btnLoadImage = FindViewById<Button>(Resource.Id.btnLoadImage);
 
-            _btnLoadImage.Click += async delegate
-            {
-
-                await LoadImage();
-
-                #region shared optimization
-                /*await PhotoService.LoadImageAsync(bytes => {
-
-				     _imgRandomPhoto.SetImageBitmap(BitmapFactory.DecodeByteArray(bytes, 0, bytes.Length));
-
-				});*/
-                #endregion
-            };
+            _photoViewModel = new PhotoViewModel();
+            _btnLoadImage.Click += btnLoadImageClick;
+            _photoViewModel.PropertyChanged += PhotoViewModelPropertyChanged;
         }
 
-        private async Task LoadImage()
+        protected override void OnDestroy()
         {
-            var bytes = await PhotoService.LoadImageAsync(Constants.RandomImageUrl);
+            base.OnDestroy();
+            _btnLoadImage.Click -= btnLoadImageClick;
+            _photoViewModel.PropertyChanged -= PhotoViewModelPropertyChanged;
 
-            if (bytes != null && bytes.Length > 0)
+        }
+
+        private void btnLoadImageClick(object sender, System.EventArgs e) => _photoViewModel.GetImageCommand.Execute(null);
+
+        private void PhotoViewModelPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
             {
-
-                _imgRandomPhoto.SetImageBitmap(BitmapFactory.DecodeByteArray(bytes, 0, bytes.Length));
+                case nameof(_photoViewModel.Image):
+                    _imgRandomPhoto.SetImageBitmap(BitmapFactory.DecodeByteArray(_photoViewModel.Image, 0, _photoViewModel.Image.Length));
+                    break;
 
             }
-
         }
-
     }
 }
 

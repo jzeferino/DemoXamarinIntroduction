@@ -7,4 +7,9 @@
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
+    <Folder Include="Service\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
 </Project>

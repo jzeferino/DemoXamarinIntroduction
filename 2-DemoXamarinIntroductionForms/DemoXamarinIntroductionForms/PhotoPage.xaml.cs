@@ -1,23 +1,25 @@
 ﻿// =============================================
-// AUTHOR : Jorge Zeferino
-// CREATE DATE : April 23, 2016
+// AUTHOR : jzeferino
 // PURPOSE : A simple Xamarin introduction demo
 // =============================================
 
 using System.IO;
 using System.Threading.Tasks;
 using SharedCode;
+using SharedCode.ViewModel;
 using Xamarin.Forms;
 
 namespace DemoXamarinIntroductionForms
 {
     public partial class PhotoPage : ContentPage
     {
+        private PhotoViewModel _photoViewModel;
+
         public PhotoPage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            BindingContext = this;
+            BindingContext = _photoViewModel = new PhotoViewModel();
 
             if (Device.RuntimePlatform == Device.iOS)
             {
@@ -25,28 +27,26 @@ namespace DemoXamarinIntroductionForms
             }
         }
 
-        private Command _photoCommand;
-        public Command PhotoCommand
+        protected override void OnAppearing()
         {
-            get
-            {
-                return _photoCommand ?? (_photoCommand = new Command(async () => await LoadImage()));
-
-                #region shared optimization
-                /*return _photoCommand ?? (_photoCommand = new Command(async () => await PhotoService.LoadImageAsync(bytes =>
-                {
-                    PhotoImage.Source = ImageSource.FromStream(() => new MemoryStream(bytes));
-                })));*/
-                #endregion
-            }
+            base.OnAppearing();
+            _photoViewModel.PropertyChanged += PhotoViewModelPropertyChanged;
         }
 
-        private async Task LoadImage()
+        protected override void OnDisappearing()
         {
-            var bytes = await PhotoService.LoadImageAsync(Constants.RandomImageUrl);
-            if (bytes != null && bytes.Length > 0)
+            base.OnDisappearing();
+            _photoViewModel.PropertyChanged -= PhotoViewModelPropertyChanged;
+
+        }
+
+        private void PhotoViewModelPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
             {
-                PhotoImage.Source = ImageSource.FromStream(() => new MemoryStream(bytes));
+                case nameof(_photoViewModel.Image):
+                    PhotoImage.Source = ImageSource.FromStream(() => new MemoryStream(_photoViewModel.Image));
+                    break;
             }
         }
     }

@@ -1,6 +1,5 @@
 ﻿// =============================================
-// AUTHOR : Jorge Zeferino
-// CREATE DATE : April 23, 2016
+// AUTHOR : jzeferino
 // PURPOSE : A simple Xamarin introduction demo
 // =============================================
 
@@ -8,6 +7,7 @@ using System;
 using System.Threading.Tasks;
 using Foundation;
 using SharedCode;
+using SharedCode.ViewModel;
 using UIKit;
 
 namespace DemoXamarinIntroductionNative.iOS
@@ -15,30 +15,37 @@ namespace DemoXamarinIntroductionNative.iOS
     public partial class ViewController : UIViewController
     {
         public ViewController(IntPtr handle) : base(handle) { }
+        private PhotoViewModel _photoViewModel;
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
-            PhotoButton.TouchUpInside += async delegate
-            {
-                await LoadImage();
-
-                #region shared optimization
-                /*await PhotoService.LoadImageAsync(bytes =>
-                {
-                    ImagePhoto.Image = new UIImage(NSData.FromArray(bytes));
-                });*/
-                #endregion
-            };
+            _photoViewModel = new PhotoViewModel();
         }
 
-        private async Task LoadImage()
+        public override void ViewDidAppear(bool animated)
         {
-            var bytes = await PhotoService.LoadImageAsync(Constants.RandomImageUrl);
-            if (bytes != null && bytes.Length > 0)
+            base.ViewDidAppear(animated);
+            PhotoButton.TouchUpInside += btnLoadImageClick;
+            _photoViewModel.PropertyChanged += PhotoViewModelPropertyChanged;
+        }
+
+        public override void ViewDidDisappear(bool animated)
+        {
+            base.ViewDidDisappear(animated);
+            PhotoButton.TouchUpInside -= btnLoadImageClick;
+            _photoViewModel.PropertyChanged -= PhotoViewModelPropertyChanged;
+        }
+
+        private void btnLoadImageClick(object sender, System.EventArgs e) => _photoViewModel.GetImageCommand.Execute(null);
+
+        private void PhotoViewModelPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
             {
-                ImagePhoto.Image = new UIImage(NSData.FromArray(bytes));
+                case nameof(_photoViewModel.Image):
+                    ImagePhoto.Image = new UIImage(NSData.FromArray(_photoViewModel.Image));
+                    break;
             }
         }
     }
